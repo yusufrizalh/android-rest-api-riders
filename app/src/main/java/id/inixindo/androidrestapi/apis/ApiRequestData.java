@@ -1,6 +1,7 @@
 package id.inixindo.androidrestapi.apis;
 
 import id.inixindo.androidrestapi.models.ModelResponse;
+import id.inixindo.androidrestapi.models.ModelResponseUsers;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -35,4 +36,9 @@ public interface ApiRequestData {
     Call<ModelResponse> deleteData(
             @Field("id") int id
     );
+
+    // =======================================================================
+
+    @GET("getAllUsers.php")
+    Call<ModelResponseUsers> getAllUsers();
 }
