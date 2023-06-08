@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshRiders;
     private List<ModelRiders> listRiders = new ArrayList<>();
 
+    private FloatingActionButton fabAddRider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +49,12 @@ public class MainActivity extends AppCompatActivity {
         toolbarMainActivity = findViewById(R.id.toolbarMainActivity);
         progressBarRiders = findViewById(R.id.progressBarRiders);
         swipeRefreshRiders = findViewById(R.id.swipeRefreshRider);
+        fabAddRider = findViewById(R.id.fabAddRider);
 
         // Toolbar
         toolbarMainActivity.setTitle("Android REST API");
         toolbarMainActivity.setTitleTextColor(Color.WHITE);
-        toolbarMainActivity.setBackgroundColor(Color.parseColor("#7bde21"));
+        toolbarMainActivity.setBackgroundColor(Color.parseColor("#303F9F"));
         setSupportActionBar(toolbarMainActivity);
 
         // RecyclerView
@@ -68,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
                 }, 5000);
             }
         });
+
+        // floating action button
+        fabAddRider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AddRiderActivity.class));
+            }
+        });
     }
 
     @Override
@@ -76,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         getAllRiders();
     }
 
-    private void getAllRiders() {
+    public void getAllRiders() {
         progressBarRiders.setVisibility(View.VISIBLE);
 
         ApiRequestData apiRequestData = RetrofitServer.connectRetrofit().create(ApiRequestData.class);

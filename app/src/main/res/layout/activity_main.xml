@@ -17,10 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewRiders"
@@ -28,7 +27,22 @@
                 android:layout_height="match_parent"
                 tools:listitem="@layout/list_item_rider" />
 
-        </LinearLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabAddRider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/icon_add_white_32"
+                android:tint="#FFFFFF"
+                app:backgroundTint="#3F51B5"
+                app:elevation="12dp"
+                app:fabSize="auto" />
+        </RelativeLayout>
 
         <ProgressBar
             android:id="@+id/progressBarRiders"
