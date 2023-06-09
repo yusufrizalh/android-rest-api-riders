@@ -29,6 +29,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import com.onesignal.OneSignal;
+
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerViewRiders;
     private RecyclerView.Adapter adapterRider;
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     private List<ModelRiders> listRiders = new ArrayList<>();
 
     private FloatingActionButton fabAddRider;
+
+    // Replace the below with your own ONESIGNAL_APP_ID
+    private static final String ONESIGNAL_APP_ID = "#";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, AddRiderActivity.class));
             }
         });
+
+        // Enable verbose OneSignal logging to debug issues if needed.
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
+
+        // promptForPushNotifications will show the native Android notification permission prompt.
+        // We recommend removing the following code and instead using an In-App Message to prompt for notification permission (See step 7)
+        OneSignal.promptForPushNotifications();
     }
 
     @Override
